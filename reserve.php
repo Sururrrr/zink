@@ -1,9 +1,22 @@
 <?php
+$id = $_GET['id'];
 session_start();
 require_once '../../Entities/Classes.php';
 $db = new Connexion('root','');
 $db->connect();
-$tables = $db->getAvailableTables();
+$table = $db->getTableById($id);
+
+if (isset($_POST['validation'])){
+
+        $iduser = $_POST['iduser'];
+        $idtable = $_POST['idtable'];
+        $date = $_POST['date'];
+        $heure = $_POST['time'];
+        $db->reserveTableTouser($iduser,$idtable,$date,$heure);
+        $_SESSION['msg'] = 'Table reservé avec succes';
+        header('location:tabreservee.php');
+
+}
 
 
 ?>
@@ -44,10 +57,10 @@ $tables = $db->getAvailableTables();
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-    <?php
+
+        <?php
         include '../../views/client/nav.php';
     ?>
-
     <!-- slider_area-start -->
     <div class="slider_area zigzag_bg_2">
         <div class="slider_sctive owl-carousel">
@@ -88,7 +101,7 @@ $tables = $db->getAvailableTables();
     </div>
     <!-- slider_area-end -->
 
-    
+              
 
 
 
@@ -100,52 +113,49 @@ $tables = $db->getAvailableTables();
     <!-- order_area_start -->
     
 <div class="container">
-			<br />
-			<br />
-			<br />
+			
 			
 			<br /><br />
 			
 			<div style="clear:both"></div>
-			<br />
-            <h3>LISTE DES TABLES</h3>
-            <hr>
-			<div class="table-responsive" style="font-size: 18px;margin: 20px;">
-				<table class="table table-bordered">
-                    <thead>
-                    <tr>
-						<th width="20%">N° </th>
-						<th width="20%">Nombre des personnes</th>
-						<th width="20%">Etat</th>
-						<th width="20%">Emplacement</th>
-						<th width="20%">Action</th>
-					</tr>
-                    </thead>
-					
-                    <tbody>
-                        <?php $i =1; foreach($tables as $table){ ?>
-                          <tr>
-                          <td><?php echo $i; ?></td>
-                          <td><?php echo $table['nb_personnes']; ?> personnes </td>
-                          <td><?php if ($table['etat_tables'] == "disponible" ){echo "<label class='badge badge-primary'>".$table['etat_tables']."</label>";}else{echo "<label class='badge badge-warning'>".$table['etat_tables']."</label>";}  ?></td>
-                          <td><?php echo $table['emplacement_tables']; ?></td>
-                          <td>
-                          
-                          <a href="reserve.php?id=<?php echo $table['id_tables']; ?>" class="btn btn-success">Reserver</a>
+			
+			<h3></h3>
+			<div class="table-responsive" style="font-size:18px !important;">
+            <h4 class="card-title">Information sur la table </h4>
+                  
+                  <div class="table-responsive" >
+                    
+                   <p> 
+                       <hr>      
+                       Nombre des personnes :    <?php echo $table['nb_personnes']; ?> personnes <br>
+                        <hr>
+                       Disponibilité :    <?php if ($table['etat_tables'] == "disponible" ){echo "<label class='badge badge-primary'>".$table['etat_tables']."</label>";}else{echo "<label class='badge badge-warning'>".$table['etat_tables']."</label>";}  ?> <br>
+                       <hr>
+                       Emplacement :    <?php echo $table['emplacement_tables']; ?> <br>
+                       <hr>
+                   </p>
+                 </div>   
+
+                 <h4 class="card-title">Details de la reservation </h4>
+                 <div class="table-responsive">
+                          <form class="form" action="reserve.php" method='POST' >
+                              <div class="form-group">
+                                <input type="date" name="date" id="date" class="form-control" style="font-size:18px !important;">
+                              </div>
+                              <div class="form-group">
+                                <input type="time" name='time' id="time" class="form-control" style="font-size:18px !important;">
+                              </div>
+                              <input type="hidden" value="<?php echo $_SESSION['iduser']; ?>" name="iduser">
+                              <input type="hidden" value="<?php echo $id; ?>" name="idtable">
+                                <input type="submit" name="validation" class="btn btn-primary" value="Valider la reservation" style="font-size:18px !important;">
+                                <input type="reset" class="btn btn-danger" value="Effacer" style="font-size:18px !important;">
                                 
-                             
-                           </td>
-                        </tr>
-
-
-
-                      <?php $i++;  } ?>
-                        
-                      </tbody>
-						
-				</table>
+                                
+                          </form>    
+                          
+                 </div>
 			</div>
-		</div>
+</div>
 
 
 

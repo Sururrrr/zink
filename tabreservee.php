@@ -3,7 +3,7 @@ session_start();
 require_once '../../Entities/Classes.php';
 $db = new Connexion('root','');
 $db->connect();
-$tables = $db->getAvailableTables();
+$reservations = $db->getReservedTablesToUser(1);
 
 
 ?>
@@ -44,10 +44,10 @@ $tables = $db->getAvailableTables();
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-    <?php
+
+        <?php
         include '../../views/client/nav.php';
     ?>
-
     <!-- slider_area-start -->
     <div class="slider_area zigzag_bg_2">
         <div class="slider_sctive owl-carousel">
@@ -108,33 +108,34 @@ $tables = $db->getAvailableTables();
 			
 			<div style="clear:both"></div>
 			<br />
-            <h3>LISTE DES TABLES</h3>
+            <h3>Liste des Reservations</h3>
             <hr>
 			<div class="table-responsive" style="font-size: 18px;margin: 20px;">
-				<table class="table table-bordered">
-                    <thead>
-                    <tr>
-						<th width="20%">N° </th>
-						<th width="20%">Nombre des personnes</th>
-						<th width="20%">Etat</th>
-						<th width="20%">Emplacement</th>
-						<th width="20%">Action</th>
-					</tr>
-                    </thead>
-					
-                    <tbody>
-                        <?php $i =1; foreach($tables as $table){ ?>
+            <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>#</th>
+                          <th> Date  </th>
+                          <th> Heure  </th>
+                          <th> Nombre des personnes </th>
+                          <th> Emplacement du table </th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php 
+                            $i =1;
+                             foreach($reservations as $reservation){
+                                 $table = $db->getTableById($reservation['id_tables']);
+                            
+                            ?>
                           <tr>
                           <td><?php echo $i; ?></td>
-                          <td><?php echo $table['nb_personnes']; ?> personnes </td>
-                          <td><?php if ($table['etat_tables'] == "disponible" ){echo "<label class='badge badge-primary'>".$table['etat_tables']."</label>";}else{echo "<label class='badge badge-warning'>".$table['etat_tables']."</label>";}  ?></td>
+                          <td><?php echo $reservation['date_reserv'];  ?> </td>
+                          <td><?php echo $reservation['heure_reserv']; ?></td>
+                          <td><?php echo $table['nb_personnes']; ?></td>
                           <td><?php echo $table['emplacement_tables']; ?></td>
-                          <td>
-                          
-                          <a href="reserve.php?id=<?php echo $table['id_tables']; ?>" class="btn btn-success">Reserver</a>
-                                
-                             
-                           </td>
+                          <td><a href="modify.php?idreser=<?php echo $reservation['id'];  ?>&id=<?php echo $table['id_tables'];  ?>" class="btn btn-primary">Modifier  </a><a href="annulation.php?id=<?php echo $reservation['id'];  ?>&idtable=<?php echo $table['id_tables'];  ?>" class="btn btn-danger">Annuler  </a> </td>
                         </tr>
 
 
@@ -142,8 +143,7 @@ $tables = $db->getAvailableTables();
                       <?php $i++;  } ?>
                         
                       </tbody>
-						
-				</table>
+                    </table>
 			</div>
 		</div>
 

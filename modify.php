@@ -1,13 +1,27 @@
 <?php
+$id = $_GET['id'];
+$idreservation = $_GET['idreser']; 
 session_start();
 require_once '../../Entities/Classes.php';
 $db = new Connexion('root','');
 $db->connect();
-$tables = $db->getAvailableTables();
+$table = $db->getTableById($id);
+$reservation = $db->getReservationById($idreservation);
+
+if (isset($_POST['modification'])){
+
+        $iduser = $_POST['iduser'];
+        $idreservation = $_POST['idreservation'];
+        $date = $_POST['date'];
+        $heure = $_POST['time'];
+        $db->setReservationById($idreservation,$date,$heure);
+        $_SESSION['msg'] = 'Reservation modifié avec succes';
+        header('location:tabreservee.php');
+
+}
 
 
 ?>
-
 <!doctype html>
 <html class="no-js" lang="zxx">
 
@@ -44,7 +58,8 @@ $tables = $db->getAvailableTables();
     <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-    <?php
+
+        <?php
         include '../../views/client/nav.php';
     ?>
 
@@ -108,43 +123,39 @@ $tables = $db->getAvailableTables();
 			
 			<div style="clear:both"></div>
 			<br />
-            <h3>LISTE DES TABLES</h3>
-            <hr>
-			<div class="table-responsive" style="font-size: 18px;margin: 20px;">
-				<table class="table table-bordered">
-                    <thead>
-                    <tr>
-						<th width="20%">N° </th>
-						<th width="20%">Nombre des personnes</th>
-						<th width="20%">Etat</th>
-						<th width="20%">Emplacement</th>
-						<th width="20%">Action</th>
-					</tr>
-                    </thead>
-					
-                    <tbody>
-                        <?php $i =1; foreach($tables as $table){ ?>
-                          <tr>
-                          <td><?php echo $i; ?></td>
-                          <td><?php echo $table['nb_personnes']; ?> personnes </td>
-                          <td><?php if ($table['etat_tables'] == "disponible" ){echo "<label class='badge badge-primary'>".$table['etat_tables']."</label>";}else{echo "<label class='badge badge-warning'>".$table['etat_tables']."</label>";}  ?></td>
-                          <td><?php echo $table['emplacement_tables']; ?></td>
-                          <td>
-                          
-                          <a href="reserve.php?id=<?php echo $table['id_tables']; ?>" class="btn btn-success">Reserver</a>
+            <h4 class="card-title">Information sur la table </h4>
+                  
+                  <div class="table-responsive" style="font-size: 18px;margin: 20px;">
+                    
+                   <p> 
+                       <hr>      
+                       Nombre des personnes :    <?php echo $table['nb_personnes']; ?> personnes <br>
+                        <hr>
+                       Disponibilité :    <?php if ($table['etat_tables'] == "disponible" ){echo "<label class='badge badge-primary'>".$table['etat_tables']."</label>";}else{echo "<label class='badge badge-warning'>".$table['etat_tables']."</label>";}  ?> <br>
+                       <hr>
+                       Emplacement :    <?php echo $table['emplacement_tables']; ?> <br>
+                       <hr>
+                   </p>
+                 </div>   
+
+                 <h4 class="card-title">Details de la reservation </h4>
+                 <div class="table-responsive">
+                          <form class="form" action="modify.php" method='POST'>
+                              <div class="form-group">
+                                <input type="date" value="<?php echo $reservation['date_reserv'];?>" name="date" id="date" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                <input type="time" value="<?php echo $reservation['heure_reserv'];?>" name='time' id="time" class="form-control" >
+                              </div>
+                              <input type="hidden" value="<?php echo $_SESSION['iduser']; ?>" name="iduser">
+                              <input type="hidden" value="<?php echo $idreservation; ?>" name="idreservation">
+                                <input type="submit" name="modification" class="btn btn-primary" value="Modifier la reservation" >
+                                <input type="reset" class="btn btn-danger" value="Effacer" >
                                 
-                             
-                           </td>
-                        </tr>
-
-
-
-                      <?php $i++;  } ?>
-                        
-                      </tbody>
-						
-				</table>
-			</div>
+                                
+                          </form>    
+                          
+                 </div>
 		</div>
 
 
