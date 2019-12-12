@@ -1,461 +1,143 @@
-<?php
-session_start();
-require_once '../../Entities/Classes.php';
-$db = new Connexion('root','');
-$db->connect();
-$tables = $db->getAvailableTables();
-
-
-?>
-
-<!doctype html>
-<html class="no-js" lang="zxx">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Le Zink </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <link rel="shortcut icon" type="image/x-icon" href="img/logo.png">
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- CSS here -->
-    <link rel="stylesheet" href="../../assets/client/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/client/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="../../assets/client/css/magnific-popup.css">
-    <link rel="stylesheet" href="../../assets/client/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../../assets/client/css/themify-icons.css">
-    <link rel="stylesheet" href="../../assets/client/css/nice-select.css">
-    <link rel="stylesheet" href="../../assets/client/css/flaticon.css">
-    <link rel="stylesheet" href="../../assets/client/css/animate.css">
-    <link rel="stylesheet" href="../../assets/client/css/slicknav.css">
-    <link rel="stylesheet" href="../../assets/client/css/style.css">
-    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+	<title>Login Le Zink</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="assets/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="assets/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="assets/css/util.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+<!--===============================================================================================-->
 </head>
-
 <body>
-    <!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-    <?php
-        include '../../views/client/nav.php';
-    ?>
+	
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('assets/images/img-01.jpg');">
+			<div class="wrap-login100 p-t-190 p-b-30">
+				<form class="login100-form validate-form" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+					<div class="login100-form-avatar">
+						<img src="assets/images/avatar-01.jpg" alt="AVATAR">
+					</div>
 
-    <!-- slider_area-start -->
-    <div class="slider_area zigzag_bg_2">
-        <div class="slider_sctive owl-carousel">
-            <div class="single_slider slider_img_1">
-                <div class="single_slider-iner">
-                    <div class="slider_contant text-center">
-                        <h3>Food Catering <br>
-                            Service.</h3>
-                            <p>inappropriate behavior is often laughed off as “boys will be boys,” women <br>
-                            face higher conduct standards especially in the workplace. That’s why it’s <br>
-                                crucial that, as women.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="single_slider slider_img_1">
-                <div class="single_slider-iner">
-                    <div class="slider_contant text-center">
-                        <h3>Food Catering <br>
-                            Service.</h3>
-                            <p>inappropriate behavior is often laughed off as “boys will be boys,” women <br>
-                            face higher conduct standards especially in the workplace. That’s why it’s <br>
-                                crucial that, as women.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="single_slider slider_img_1">
-                <div class="single_slider-iner">
-                    <div class="slider_contant text-center">
-                        <h3>Food Catering <br>
-                            Service.</h3>
-                            <p>inappropriate behavior is often laughed off as “boys will be boys,” women <br>
-                            face higher conduct standards especially in the workplace. That’s why it’s <br>
-                                crucial that, as women.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- slider_area-end -->
+					<span class="login100-form-title p-t-20 p-b-45">
+						John Doe
+					</span>
 
-    
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Username is required">
+						<input class="input100" type="text" name="username" placeholder="Username">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user"></i>
+						</span>
+					</div>
 
+					<div class="wrap-input100 validate-input m-b-10" data-validate = "Password is required">
+						<input class="input100" type="password" name="pass" placeholder="Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock"></i>
+						</span>
+					</div>
 
+					<div class="container-login100-form-btn p-t-10">
+						<button class="login100-form-btn" type="submit" name="login" onclick="recapVerif()">
+							Login
+						</button>
+					</div>
 
+					<div class="container-login100-form-btn p-t-10">
 
+					<div class="g-recaptcha" data-sitekey="6LeXFMcUAAAAAEgV635IiLnbNe_QzPguIfUlNSja"></div> 
 
-
-
-
-    <!-- order_area_start -->
-    
-<div class="container">
-			<br />
-			<br />
-			<br />
-			
-			<br /><br />
-			
-			<div style="clear:both"></div>
-			<br />
-            <h3>LISTE DES TABLES</h3>
-            <hr>
-			<div class="table-responsive" style="font-size: 18px;margin: 20px;">
-				<table class="table table-bordered">
-                    <thead>
-                    <tr>
-						<th width="20%">N° </th>
-						<th width="20%">Nombre des personnes</th>
-						<th width="20%">Etat</th>
-						<th width="20%">Emplacement</th>
-						<th width="20%">Action</th>
-					</tr>
-                    </thead>
 					
-                    <tbody>
-                        <?php $i =1; foreach($tables as $table){ ?>
-                          <tr>
-                          <td><?php echo $i; ?></td>
-                          <td><?php echo $table['nb_personnes']; ?> personnes </td>
-                          <td><?php if ($table['etat_tables'] == "disponible" ){echo "<label class='badge badge-primary'>".$table['etat_tables']."</label>";}else{echo "<label class='badge badge-warning'>".$table['etat_tables']."</label>";}  ?></td>
-                          <td><?php echo $table['emplacement_tables']; ?></td>
-                          <td>
-                          
-                          <a href="reserve.php?id=<?php echo $table['id_tables']; ?>" class="btn btn-success">Reserver</a>
-                                
-                             
-                           </td>
-                        </tr>
-
-
-
-                      <?php $i++;  } ?>
-                        
-                      </tbody>
-						
-				</table>
+				</form>
 			</div>
 		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="assets/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="assets/js/main.js"></script>
+	<script src='https://www.google.com/recaptcha/api.js'></script>
+	<script>
+	function recapVerif() {
+if(grecaptcha && grecaptcha.getResponse().length == 0)
+{
+     //the recaptcha is checked
+	 // Do what you want here
+
+alert("incheckd");	
+    redirect("index.php");
+return true;
+	
+} else {
+	return false;
 
 
 
+}
+}
+
+</script>
 
 
 
+<?php
+if (isset($_POST['login'])){
+	if ($_POST['username'] == "admin@gmail.com" && $_POST['pass'] == "0123456789"){
+
+		session_start();
+		$_SESSION['login_type'] = "admin";
+		$_SESSION['username'] = "Adminstrateur";
+		$_SESSION['iduser'] = 1;
+		if (recapVerif() == true){
+			header('location:core/admin');
+		} else {
+			header('location:index');
+		}
+	
+
+		
+
+	}else if ($_POST['username'] == "client@gmail.com" && $_POST['pass'] == "0123456789"){
+		session_start();
+		$_SESSION['login_type'] = "user";
+		$_SESSION['username'] = "Client 1";
+		$_SESSION['iduser'] = 1;
+		header('location:core/client');
+
+	}
 
 
 
+}
+?>
 
 
 
-
-
-
-
-    <!-- order_area_end -->
-
-    <!-- testmonial_area_start -->
-    <div class="testmonial_area banner-3">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section_title white mb-60">
-                        <h3>Feedback from Customers</h3>
-                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards <br> especially in the workplace. That’s why it’s crucial that, as women.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="testmonial_active owl-carousel">
-                        <div class="single_testmonial d-flex">
-                            <div class="testmonial_thumb">
-                                <img src="img/testmonial/1.png" alt="">
-                            </div>
-                            <div class="testmonial_author">
-                                <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one
-                                    yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_testmonial d-flex">
-                            <div class="testmonial_thumb">
-                                <img src="img/testmonial/2.png" alt="">
-                            </div>
-                            <div class="testmonial_author">
-                                <h3>Adam Nahan</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one
-                                    yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_testmonial d-flex">
-                            <div class="testmonial_thumb">
-                                <img src="img/testmonial/1.png" alt="">
-                            </div>
-                            <div class="testmonial_author">
-                                <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one
-                                    yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_testmonial d-flex">
-                            <div class="testmonial_thumb">
-                                <img src="img/testmonial/2.png" alt="">
-                            </div>
-                            <div class="testmonial_author">
-                                <h3>Adam Nahan</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one
-                                    yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_testmonial d-flex">
-                            <div class="testmonial_thumb">
-                                <img src="img/testmonial/1.png" alt="">
-                            </div>
-                            <div class="testmonial_author">
-                                <h3>Adame Nesane</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one
-                                    yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                        <div class="single_testmonial d-flex">
-                            <div class="testmonial_thumb">
-                                <img src="../../assets/client/img/testmonial/2.png" alt="">
-                            </div>
-                            <div class="testmonial_author">
-                                <h3>Adam Nahan</h3>
-                                <span>Chief Customer</span>
-                                <p>You're had. Subdue grass Meat us winged years you'll doesn't. fruit two also won one
-                                    yielding creepeth third give may never lie alternet food.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- testmonial_area_end -->
-
-    <!-- brand_area-start -->
-    <div class="brand_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="section_title mb-70">
-                        <h3>Brands love to take Our Services</h3>
-                        <p>inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct
-                            standards <br> especially in the workplace. That’s why it’s crucial that, as women.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/1.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/02.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/03.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/04.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/05.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/06.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/7.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/12.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/9.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/10.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/11.png" alt="">
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-3">
-                        <div class="single_brand">
-                            <img src="../../assets/client/img/brand/8.png" alt="">
-                        </div>
-                    </div>
-                </div>
-        </div>
-    </div>
-    <!-- brand_area-end -->
-
-    <!-- footer-start -->
-    <footer class="footer_area footer-bg zigzag_bg_1">
-        <div class="footer-top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="heading">
-                                    Top Products
-                            </h3>
-                            <ul>
-                                <li><a href="#">Managed Website</a></li>
-                                <li><a href="#"> Manage Reputation</a></li>
-                                <li><a href="#">Power Tools</a></li>
-                                <li><a href="#">Marketing Service</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="heading">
-                                    Quick Links
-                            </h3>
-                            <ul>
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Brand Assets</a></li>
-                                <li><a href="#"> Investor Relations</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="heading">
-                                    Features
-                            </h3>
-                            <ul>
-                                <li><a href="#">Jobs</a></li>
-                                <li><a href="#">Brand Assets</a></li>
-                                <li><a href="#">Investor Relations</a></li>
-                                <li><a href="#">Terms of Service</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="heading">
-                                    Resources
-                            </h3>
-                            <ul>
-                                <li><a href="#">Guides</a></li>
-                                <li><a href="#">Research</a></li>
-                                <li><a href="#">Experts</a></li>
-                                <li><a href="#">Agencies</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-4 col-md-12 col-lg-4">
-                        <div class="footer_widget">
-                            <h3 class="heading">
-                                    Newsletter
-                            </h3>
-                            <p class="offer_text" >You can trust us. we only send promo offers,</p>
-                            <form action="#">
-                                <input type="text" placeholder="Your email address">
-                                <button type="submit"> <i class="ti-arrow-right"></i> </button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-xl-7 col-md-12 col-lg-8">
-                        <div class="copyright">
-                                <p class="footer-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
-                        </div>
-                    </div>
-                    <div class="col-xl-5 col-md-12 col-lg-4">
-                        <div class="social_links">
-                            <ul>
-                                <li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
-                                <li><a href="#"> <i class="fa fa-twitter"></i> </a></li>
-                                <li><a href="#"> <i class="fa fa-dribbble"></i> </a></li>
-                                <li><a href="#"> <i class="fa fa-behance"></i> </a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- footer-end -->
-
-
-    <!-- JS here -->
-    <script src="../../assets/client/js/vendor/modernizr-3.5.0.min.js"></script>
-    <script src="../../assets/client/js/vendor/jquery-1.12.4.min.js"></script>
-    <script src="../../assets/client/js/popper.min.js"></script>
-    <script src="../../assets/client/js/bootstrap.min.js"></script>
-    <script src="../../assets/client/js/owl.carousel.min.js"></script>
-    <script src="../../assets/client/js/isotope.pkgd.min.js"></script>
-    <script src="../../assets/client/js/ajax-form.js"></script>
-    <script src="../../assets/client/js/waypoints.min.js"></script>
-    <script src="../../assets/client/js/jquery.counterup.min.js"></script>
-    <script src="../../assets/client/js/imagesloaded.pkgd.min.js"></script>
-    <script src="../../assets/client/js/scrollIt.js"></script>
-    <script src="../../assets/client/js/jquery.scrollUp.min.js"></script>
-    <script src="../../assets/client/js/wow.min.js"></script>
-    <script src="../../assets/client/js/nice-select.min.js"></script>
-    <script src="../../assets/client/js/jquery.slicknav.min.js"></script>
-    <script src="../../assets/client/js/jquery.magnific-popup.min.js"></script>
-    <script src="../../assets/client/js/plugins.js"></script>
-
-    <!--contact js-->
-    <script src="../../assets/client/js/contact.js"></script>
-    <script src="../../assets/client/js/jquery.ajaxchimp.min.js"></script>
-    <script src="../../assets/client/js/jquery.form.js"></script>
-    <script src="../../assets/client/js/jquery.validate.min.js"></script>
-    <script src="../../assets/client/js/mail-script.js"></script>
-
-    <script src="../../assets/client/js/main.js"></script>
 
 </body>
-
 </html>
