@@ -9,7 +9,7 @@ $reservations = $db->getReservedTablesToUser(1);
 ?>
 
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="zxx"> 
 
 <head>
     <meta charset="utf-8">
@@ -27,6 +27,8 @@ $reservations = $db->getReservedTablesToUser(1);
     <!-- Place favicon.ico in the root directory -->
 
     <!-- CSS here -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.css"/>
+
     <link rel="stylesheet" href="../../assets/client/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../assets/client/css/owl.carousel.min.css">
     <link rel="stylesheet" href="../../assets/client/css/magnific-popup.css">
@@ -111,14 +113,15 @@ $reservations = $db->getReservedTablesToUser(1);
             <h3>Liste des Reservations</h3>
             <hr>
 			<div class="table-responsive" style="font-size: 18px;margin: 20px;">
-            <table class="table table-hover">
+            <table class="table table-hover" id="example" class="display" width="100%">
+
                       <thead>
                         <tr>
                           <th>#</th>
-                          <th> Date  </th>
-                          <th> Heure  </th>
-                          <th> Nombre des personnes </th>
-                          <th> Emplacement du table </th>
+                          <th> Date </th>
+                          <th> Heure</th>
+                          <th> Nombre des personnes</th>
+                          <th> Emplacement du table</th>
                           <th>Actions</th>
                         </tr>
                       </thead>
@@ -135,7 +138,7 @@ $reservations = $db->getReservedTablesToUser(1);
                           <td><?php echo $reservation['heure_reserv']; ?></td>
                           <td><?php echo $table['nb_personnes']; ?></td>
                           <td><?php echo $table['emplacement_tables']; ?></td>
-                          <td><a href="modify.php?idreser=<?php echo $reservation['id'];  ?>&id=<?php echo $table['id_tables'];  ?>" class="btn btn-primary">Modifier  </a><a href="annulation.php?id=<?php echo $reservation['id'];  ?>&idtable=<?php echo $table['id_tables'];  ?>" class="btn btn-danger">Annuler  </a> </td>
+                          <td><a href="modify.php?idreser=<?php echo $reservation['id'];  ?>&id=<?php echo $table['id_tables'];  ?>" class="btn btn-primary"> Modifier  </a><a href="annulation.php?id=<?php echo $reservation['id'];  ?>&idtable=<?php echo $table['id_tables'];  ?>" class="btn btn-danger">Annuler  </a> </td>
                         </tr>
 
 
@@ -455,7 +458,25 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="../../assets/client/js/mail-script.js"></script>
 
     <script src="../../assets/client/js/main.js"></script>
+ 
+    <script>
 
+$(function() {
+
+    var datatable = $('#example').DataTable({
+        "pageLength": 5
+
+    });
+
+
+    
+});
+
+
+    </script>
+
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.20/datatables.min.js"></script>    
 </body>
 
 </html>
